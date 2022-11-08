@@ -120,9 +120,12 @@ fun AppScreen(modifier: Modifier = Modifier){
             partiesNavigation(navController, modifier, onCanNavigateBack = {
                 canNavigateBack = it
             })
-            composable(Screen.Friends.route) { Friends(navController) }
-            composable(Screen.Profile.route) { Profile(navController) }
-            //composable(InsideCocktailsScreens.CocktailsList.route) { CocktailsList(navController) }
+            composable(Screen.Friends.route) { Friends(navController, onCanNavigateBack = {
+                canNavigateBack = it
+            }) }
+            composable(Screen.Profile.route) { Profile(navController, onCanNavigateBack = {
+                canNavigateBack = it
+            })}
         }
     }
 }

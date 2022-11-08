@@ -11,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun Friends(navController: NavController){
+fun Friends(navController: NavController, onCanNavigateBack: (Boolean) -> Unit){
+    onCanNavigateBack(false)
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopCenter

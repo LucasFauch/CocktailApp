@@ -7,10 +7,16 @@ import androidx.compose.foundation.magnifier
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -44,35 +50,3 @@ fun NavGraphBuilder.cocktailsNavigation(navController: NavController,
         }
     }
 }
-
-/*
-@Composable
-fun Cocktails(navController: NavHostController) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
-    ) {
-        Text(
-            modifier = Modifier.clickable {
-                navController.navigate(route = AddCocktailsRoutes.CocktailsComposition.name)
-            },
-            text = "Liste Cocktails",
-            color = MaterialTheme.colors.primaryVariant,
-            fontSize = MaterialTheme.typography.h3.fontSize
-        )
-    }
-}*/
-
-/*Box(
-    modifier = Modifier.fillMaxSize(),
-    contentAlignment = Alignment.Center
-){
-    Text(
-        modifier = Modifier.clickable {
-            navController2.navigate(route = InsideCocktailsScreens.CocktailsComposition.route)
-        },
-        text = "Composition cocktails",
-        color = MaterialTheme.colors.primaryVariant,
-        fontSize = MaterialTheme.typography.h3.fontSize
-    )
-}*/
