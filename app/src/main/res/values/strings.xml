@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CocktailApp</string>
+    <string name="cocktails">Cocktails</string>
+    <string name="parties">Soirées</string>
+    <string name="profile">Profil</string>
+    <string name="friends">Amis</string>
+    <string name="back_button">Bouton retour</string>
+    <string name="cocktails_list">cocktails_list</string>
+    <string name="cocktails_composition">cocktails_composition</string>
 </resources>
