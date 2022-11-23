@@ -1,7 +1,12 @@
 package com.example.cocktailapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.cocktailapp.CocktailAppApplication
 import com.example.cocktailapp.data.repositories.CocktailRepository
 import com.example.cocktailapp.data.states.CocktailUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,6 +28,16 @@ class CocktailViewModel(private val cocktailRepository: CocktailRepository): Vie
                 })
             }catch (e: Exception){
 
+            }
+        }
+    }
+
+    companion object{
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val app = (this[APPLICATION_KEY] as CocktailAppApplication)
+                val cocktailRepository = app.container.cocktailRepository
+                CocktailViewModel(cocktailRepository)
             }
         }
     }
