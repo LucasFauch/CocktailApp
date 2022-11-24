@@ -50,10 +50,6 @@ object OnlineCocktailSource: CocktailSource {
     }
 
     override suspend fun getCocktails(): List<CocktailModel> {
-        println(retrofitCocktailService.getCocktails().list.map{
-            CocktailModel(name = it.name, id = it.id)
-        })
-        println("WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
         return retrofitCocktailService.getCocktails().list.map{
             CocktailModel(name = it.name, id = it.id)
         }
