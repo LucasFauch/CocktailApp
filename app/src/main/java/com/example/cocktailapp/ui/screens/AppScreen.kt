@@ -123,7 +123,7 @@ fun AppScreen(modifier: Modifier = Modifier){
             composable(Screen.Friends.route) { Friends(navController, onCanNavigateBack = {
                 canNavigateBack = it
             }) }
-            composable(Screen.Profile.route) { Profile(navController, onCanNavigateBack = {
+            composable(Screen.Profile.route) { Profile(modifier = modifier, navController = navController, onCanNavigateBack = {
                 canNavigateBack = it
             })}
         }

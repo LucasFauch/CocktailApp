@@ -13,8 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+@AndroidEntryPoint
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

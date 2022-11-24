@@ -9,13 +9,16 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.cocktailapp.CocktailAppApplication
 import com.example.cocktailapp.data.repositories.CocktailRepository
 import com.example.cocktailapp.data.states.CocktailUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class CocktailViewModel(private val cocktailRepository: CocktailRepository): ViewModel() {
+@HiltViewModel
+class CocktailViewModel @Inject constructor(private val cocktailRepository: CocktailRepository): ViewModel() {
     private val _uiState = MutableStateFlow(listOf<CocktailUiState>())
     val uiState: StateFlow<List<CocktailUiState>> = _uiState.asStateFlow()
 
@@ -28,16 +31,6 @@ class CocktailViewModel(private val cocktailRepository: CocktailRepository): Vie
                 })
             }catch (e: Exception){
 
-            }
-        }
-    }
-
-    companion object{
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val app = (this[APPLICATION_KEY] as CocktailAppApplication)
-                val cocktailRepository = app.container.cocktailRepository
-                CocktailViewModel(cocktailRepository)
             }
         }
     }

@@ -1,6 +1,11 @@
 package com.example.cocktailapp.data.repositories
 
 import com.example.cocktailapp.data.models.CocktailModel
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 
 interface CocktailSource{
     suspend fun getCocktails(): List<CocktailModel>
@@ -8,27 +13,22 @@ interface CocktailSource{
 
 interface CocktailRepository {
     suspend fun getCocktails(): List<CocktailModel>
-    suspend fun getCocktailsFromCache(): List<CocktailModel>
 }
 
-class DefaultCocktailRepository(val cocktailSource: CocktailSource): CocktailRepository{
+class DefaultCocktailRepository(): CocktailRepository{
+    @Inject
+    lateinit var cocktailSource: CocktailSource
+
     override suspend fun getCocktails(): List<CocktailModel> {
         return cocktailSource.getCocktails()
     }
-
-    override suspend fun getCocktailsFromCache(): List<CocktailModel> {
-        return cocktailSource.getCocktails()
-    }
-
 }
 
-class CachedCocktailRepository(val cocktailSource: CocktailSource, val cocktailCachingSource: CocktailSource): CocktailRepository{
-    override suspend fun getCocktails(): List<CocktailModel> {
-        TODO("Not yet implemented")
+@InstallIn(SingletonComponent::class)
+@Module
+object CocktailRepositoryModule{
+    @Provides
+    fun provideCocktailRepository(): CocktailRepository{
+        return DefaultCocktailRepository()
     }
-
-    override suspend fun getCocktailsFromCache(): List<CocktailModel> {
-        TODO("Not yet implemented")
-    }
-
 }
