@@ -17,7 +17,8 @@ import javax.inject.Singleton
 object OnlineCocktailSource: CocktailSource {
     private const val BASE_URL = "www.thecocktaildb.com/api/json/v1/1"
     private val moshi = Moshi.Builder()
-        .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
+        //.add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
+        .add(KotlinJsonAdapterFactory())
         .build()
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -53,15 +54,5 @@ object OnlineCocktailSource: CocktailSource {
         return retrofitCocktailService.getCocktails().list.map{
             CocktailModel(name = it.name, id = it.id)
         }
-    }
-}
-
-@InstallIn(SingletonComponent::class)
-@Module
-object CocktailSourceModule{
-    @Provides
-    @Singleton
-    fun provideCocktailSource(): CocktailSource{
-        return OnlineCocktailSource
     }
 }
