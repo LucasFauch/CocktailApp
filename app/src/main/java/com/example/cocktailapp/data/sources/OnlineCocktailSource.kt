@@ -21,23 +21,23 @@ object OnlineCocktailSource: CocktailSource {
         .add(KotlinJsonAdapterFactory())
         .build()
     private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     data class CocktailList(
-        @Json(name="drinks")
+        @field:Json(name="drinks")
         val list: List<OnlineCocktailModel>
     )
 
     data class OnlineCocktailModel(
-        @Json(name="strDrink")
+        @field:Json(name="strDrink")
         val name: String,
 
-        @Json(name="idDrink")
+        @field:Json(name="idDrink")
         val id: String,
 
-        @Json(name="strDrinkThumb")
+        @field:Json(name="strDrinkThumb")
         val thumb: String
     )
 
