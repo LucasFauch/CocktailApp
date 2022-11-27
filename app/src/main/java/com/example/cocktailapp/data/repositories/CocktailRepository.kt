@@ -17,7 +17,7 @@ interface CocktailSource{
 }
 
 interface CocktailRepository {
-    suspend fun getCocktails(): List<CocktailModel>
+    suspend fun getCocktailsList(): List<CocktailModel>
 }
 
 class DefaultCocktailRepository @Inject constructor(): CocktailRepository{
@@ -31,7 +31,7 @@ class DefaultCocktailRepository @Inject constructor(): CocktailRepository{
         cocktailSource = utilitiesEntryPoint?.cocktailSource!!
     }
 
-    override suspend fun getCocktails(): List<CocktailModel> {
+    override suspend fun getCocktailsList(): List<CocktailModel> {
         return cocktailSource.getCocktails()
     }
 }

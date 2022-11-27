@@ -22,10 +22,10 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
     private val _uiState = MutableStateFlow(listOf<CocktailUiState>())
     val uiState: StateFlow<List<CocktailUiState>> = _uiState.asStateFlow()
 
-    private fun getCocktails(){
+    private fun getCocktailsList(){
         viewModelScope.launch {
             try {
-                val listCocktail = cocktailRepository.getCocktails()
+                val listCocktail = cocktailRepository.getCocktailsList()
                 _uiState.emit(listCocktail.map{
                     CocktailUiState(name = it.name)
                 })
@@ -33,5 +33,8 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
 
             }
         }
+    }
+    init {
+        getCocktailsList()
     }
 }

@@ -92,7 +92,7 @@ fun AppScreen(modifier: Modifier = Modifier){
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var currentScreenTitle by remember {
-        mutableStateOf(Screen.Profile.resourceId)
+        mutableStateOf(Screen.Parties.resourceId)
     }
 
     var canNavigateBack by remember {
@@ -109,9 +109,9 @@ fun AppScreen(modifier: Modifier = Modifier){
             BottomBar(navController, modifier) {
                 currentScreenTitle = it.resourceId
             }
-        }) {
+        }) {//Pour changer la page d'accueil de l'appli
             innerPadding ->
-        NavHost(navController, startDestination = Screen.Profile.route, Modifier.padding(innerPadding)) {
+        NavHost(navController, startDestination = Screen.Parties.route, Modifier.padding(innerPadding)) {
             cocktailsNavigation(navController, modifier, onCanNavigateBack = {
                 canNavigateBack = it
             })
