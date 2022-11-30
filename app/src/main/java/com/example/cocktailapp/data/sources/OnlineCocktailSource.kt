@@ -15,11 +15,11 @@ import retrofit2.http.GET
 import javax.inject.Singleton
 
 object OnlineCocktailSource: CocktailSource {
-    private const val BASE_URL = "www.thecocktaildb.com/api/json/v1/1"
+    private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
 
     private val moshi = Moshi.Builder()
         //.add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
-        .add(KotlinJsonAdapterFactory())
+        .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
         .build()
 
     private val retrofit = Retrofit.Builder()
@@ -28,18 +28,18 @@ object OnlineCocktailSource: CocktailSource {
         .build()
 
     data class CocktailList(
-        @field:Json(name="drinks")
+        @Json(name="drinks")
         val list: List<OnlineCocktailModel>
     )
 
     data class OnlineCocktailModel(
-        @field:Json(name="strDrink")
+        @Json(name="strDrink")
         val name: String,
 
-        @field:Json(name="idDrink")
+        @Json(name="idDrink")
         val id: String,
 
-        @field:Json(name="strDrinkThumb")
+        @Json(name="strDrinkThumb")
         val thumb: String
     )
 
@@ -54,7 +54,7 @@ object OnlineCocktailSource: CocktailSource {
 
     override suspend fun getCocktails(): List<CocktailModel> {
         return retrofitCocktailService.getCocktails().list.map{
-            CocktailModel(name = it.name, id = it.id)
+            CocktailModel(0, name = it.name, cocktailId = it.id.toInt())
         }
     }
 }

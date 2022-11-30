@@ -2,6 +2,7 @@ package com.example.cocktailapp.data.repositories
 
 import com.example.cocktailapp.CocktailAppApplication
 import com.example.cocktailapp.data.models.CocktailModel
+import com.example.cocktailapp.data.sources.CacheCocktailSource
 import com.example.cocktailapp.data.sources.OnlineCocktailSource
 import dagger.Module
 import dagger.Provides
@@ -59,6 +60,7 @@ object CocktailSourceModule {
     @Provides
     @Singleton
     fun provideCocktailSource(): CocktailSource {
+        //return CacheCocktailSource
         return OnlineCocktailSource
     }
 }

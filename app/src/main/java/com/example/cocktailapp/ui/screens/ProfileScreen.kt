@@ -21,8 +21,8 @@ fun Profile(modifier: Modifier = Modifier,
             navController: NavController,
             onCanNavigateBack: (Boolean) -> Unit){
     val cocktailList = viewModel.uiState.collectAsState()
-
     onCanNavigateBack(false)
+
     ListCocktails(modifier = modifier, cocktailList = cocktailList.value)
 }
 

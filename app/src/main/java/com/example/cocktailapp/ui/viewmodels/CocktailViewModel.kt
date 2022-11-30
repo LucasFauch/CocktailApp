@@ -30,7 +30,7 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
                     CocktailUiState(name = it.name)
                 })
             }catch (e: Exception){
-
+                println(e)
             }
         }
     }
