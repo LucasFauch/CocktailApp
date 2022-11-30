@@ -54,7 +54,7 @@ object OnlineCocktailSource: CocktailSource {
 
     override suspend fun getCocktails(): List<CocktailModel> {
         return retrofitCocktailService.getCocktails().list.map{
-            CocktailModel(0, name = it.name, cocktailId = it.id.toInt())
+            CocktailModel(0, name = it.name, cocktailId = it.id.toInt(), thumb = "${it.thumb}/preview")
         }
     }
 }

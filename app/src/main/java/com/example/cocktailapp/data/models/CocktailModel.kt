@@ -14,5 +14,8 @@ data class CocktailModel(
     var name: String,
 
     @NonNull @ColumnInfo(name="cocktail_id")
-    var cocktailId: Int
+    var cocktailId: Int,
+
+    @NonNull @ColumnInfo(name="thumbnail")
+    var thumb: String
 )

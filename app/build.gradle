@@ -49,6 +49,10 @@ android {
 }
 
 dependencies {
+    // Coil (for images from the web)
+    implementation "io.coil-kt:coil-compose:2.2.2"
+
+    //Room
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 

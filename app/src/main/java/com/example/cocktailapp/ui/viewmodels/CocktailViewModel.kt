@@ -27,7 +27,7 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
             try {
                 val listCocktail = cocktailRepository.getCocktailsList()
                 _uiState.emit(listCocktail.map{
-                    CocktailUiState(name = it.name)
+                    CocktailUiState(name = it.name, thumb = it.thumb)
                 })
             }catch (e: Exception){
                 println(e)
