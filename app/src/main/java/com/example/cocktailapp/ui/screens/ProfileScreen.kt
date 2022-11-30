@@ -1,8 +1,7 @@
 package com.example.cocktailapp.ui.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.material.Card
@@ -10,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -39,14 +39,19 @@ fun ListCocktails(cocktailList: List<CocktailUiState>, modifier: Modifier = Modi
 
 @Composable
 fun CocktailCard(cocktail: CocktailUiState, modifier: Modifier = Modifier){
-    Card(modifier = modifier.padding(8.dp), elevation = 4.dp) {
-        Column(){
+    Card(modifier = modifier
+        .fillMaxSize()
+        .padding(8.dp),
+        backgroundColor = Color.LightGray,
+        elevation = 4.dp) {
+        //padding(8.dp)
+        Row(){
+            AsyncImage(cocktail.thumb, contentDescription = null)
             Text(
                 text = cocktail.name,
                 modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.h6,
             )
-            AsyncImage(model = cocktail.thumb, contentDescription = null)
         }
     }
 }
