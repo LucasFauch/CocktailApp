@@ -7,4 +7,7 @@
     <string name="back_button">Bouton retour</string>
     <string name="cocktails_list">cocktails_list</string>
     <string name="cocktails_composition">cocktails_composition</string>
+    <string name="profileHome">profileHome</string>
+    <string name="profileShare">profileShare</string>
+
 </resources>
