@@ -53,8 +53,9 @@ object OnlineCocktailSource {
     }
 
     suspend fun getCocktails(): List<CocktailModel> {
+        var count = 0
         return retrofitCocktailService.getCocktails().list.map{
-            CocktailModel(0, name = it.name, cocktailId = it.id.toInt(), thumb = "${it.thumb}/preview")
+            CocktailModel(count++, name = it.name, cocktailId = it.id.toInt(), thumb = "${it.thumb}/preview")
         }
     }
 }

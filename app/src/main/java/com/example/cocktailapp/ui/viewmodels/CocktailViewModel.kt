@@ -26,6 +26,7 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
     private fun getCocktailsList(){
         viewModelScope.launch {
             cocktailRepository.getCocktailsList().collect{ list ->
+                println(list)
                 val listUi = list.map{
                     CocktailUiState(it.name, it.thumb)
                 }
