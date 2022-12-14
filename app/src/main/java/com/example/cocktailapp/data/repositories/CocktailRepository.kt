@@ -10,19 +10,20 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 interface CocktailSource{
-    suspend fun getCocktails(): List<CocktailModel>
+    suspend fun getCocktails(): Flow<List<CocktailModel>>
 }
 
 interface CocktailRepository {
-    suspend fun getCocktailsList(): List<CocktailModel>
+    suspend fun getCocktailsList(): Flow<List<CocktailModel>>
 }
 
 class DefaultCocktailRepository @Inject constructor(): CocktailRepository{
-    private lateinit var cocktailSource: CocktailSource
+    private var cocktailSource: CocktailSource
 
     init{
         val appContext = CocktailAppApplication.getContext()
@@ -32,7 +33,7 @@ class DefaultCocktailRepository @Inject constructor(): CocktailRepository{
         cocktailSource = utilitiesEntryPoint?.cocktailSource!!
     }
 
-    override suspend fun getCocktailsList(): List<CocktailModel> {
+    override suspend fun getCocktailsList(): Flow<List<CocktailModel>> {
         return cocktailSource.getCocktails()
     }
 }
@@ -60,7 +61,6 @@ object CocktailSourceModule {
     @Provides
     @Singleton
     fun provideCocktailSource(): CocktailSource {
-        //return CacheCocktailSource
-        return OnlineCocktailSource
+        return CacheCocktailSource
     }
 }

@@ -13,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -24,13 +25,11 @@ class CocktailViewModel @Inject constructor(private val cocktailRepository: Cock
 
     private fun getCocktailsList(){
         viewModelScope.launch {
-            try {
-                val listCocktail = cocktailRepository.getCocktailsList()
-                _uiState.emit(listCocktail.map{
-                    CocktailUiState(name = it.name, thumb = it.thumb)
-                })
-            }catch (e: Exception){
-                println(e)
+            cocktailRepository.getCocktailsList().collect{ list ->
+                val listUi = list.map{
+                    CocktailUiState(it.name, it.thumb)
+                }
+                _uiState.emit(listUi)
             }
         }
     }

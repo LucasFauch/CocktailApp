@@ -14,7 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import javax.inject.Singleton
 
-object OnlineCocktailSource: CocktailSource {
+object OnlineCocktailSource {
     private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
 
     private val moshi = Moshi.Builder()
@@ -52,7 +52,7 @@ object OnlineCocktailSource: CocktailSource {
         retrofit.create(CocktailService::class.java)
     }
 
-    override suspend fun getCocktails(): List<CocktailModel> {
+    suspend fun getCocktails(): List<CocktailModel> {
         return retrofitCocktailService.getCocktails().list.map{
             CocktailModel(0, name = it.name, cocktailId = it.id.toInt(), thumb = "${it.thumb}/preview")
         }

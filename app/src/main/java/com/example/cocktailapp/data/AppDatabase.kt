@@ -15,7 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Database(entities = arrayOf(CocktailModel::class), version = 1)
+@Database(entities = arrayOf(CocktailModel::class), version = 2)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun cocktailDao(): CocktailDao
 
